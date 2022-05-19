@@ -1,4 +1,4 @@
-
+from user import User 
 class Post_encapsulator():
     def __init__(self):
         self.list_of_posts = []
