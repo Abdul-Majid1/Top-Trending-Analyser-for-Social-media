@@ -4,3 +4,4 @@ This repository is a final project submission for the DS2 spring 2022 offering a
 
 
 ## Introduction
+ ![Social rending](trending.jpeg)
