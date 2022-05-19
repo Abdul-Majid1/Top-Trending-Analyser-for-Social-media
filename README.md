@@ -16,6 +16,10 @@ On running the tkinter application, our social media app opens where you can eit
   <img src="Login page.png" +/>
 </p>
 
+<p align="center">
+  <img src="registerpage.png" +/>
+</p>
+
 
 
 these posts will be in order of time posted with most recent on top. The user can post in any category including his own and if he posts in his own category then he can see in real time the post appear on top, if not the post is relayed to other users who match the category of interest. Each user has the facility of liking posts also, on each insert the post inserted into our pairing heap and the decrease function is called on each like , this allows our heap to be updated ,clicking on the top trending button will pop min from the heap and show you the top most liked posts, you can click on the next and previous buttons 
