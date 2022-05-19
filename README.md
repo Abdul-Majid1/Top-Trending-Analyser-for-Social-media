@@ -1,2 +1,6 @@
-# Top-Trending-Analyser-for-Social-media
-Ds2 Project that makes use of pairing heap fast decrease key operation to implement the top trending feature prevalent in most famous social media apps today. 
+# CS201 - Data Structures - Social Media Analyser (Pairing heap)
+
+This repository is a final project submission for the DS2 spring 2022 offering at Habib University.
+
+
+## Introduction
