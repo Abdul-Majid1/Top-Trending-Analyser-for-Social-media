@@ -38,5 +38,11 @@ Upon login, the user will be able to see all the posts that have been made in hi
 
 
 
-Each user has the facility of liking posts also, on each insert the post inserted into our pairing heap and the decrease function is called on each like , this allows our heap to be updated ,clicking on the top trending button will pop min from the heap and show you the top most liked posts, you can click on the next and previous buttons 
+Each user has the facility of liking posts also, on each insert the post inserted into our pairing heap and the decrease function is called on each like , this allows our heap to be updated ,clicking on the top trending button will pop min from the heap and show you the top most liked posts, you can click on the next and previous buttons, we can try out this functionality so add two more posts by the name of test 1 and test2 and then we like the lets go kayaking post once the test2 post twice and leave the test1 post on zero likes and as we will see the top trending analyser will show test2 first then the lets go kayaking and then the test1 post. 
+<p align="center">
+  <img src="multipleposts.png" +/>
+</p>
+
+
+
 
