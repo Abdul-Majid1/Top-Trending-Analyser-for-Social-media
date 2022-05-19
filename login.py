@@ -16,25 +16,25 @@ from tkinter import ttk
 
 class Post_encapsulator():
     def __init__(self):
-        self.list_of_posts = []
-        self.i = 0
-        self.current_indexes = []
-        self.post_number = 0
+        self.list_of_posts = []  # record of all posts just based on recent
+        self.i = 0   # this is an iterator variable so basically helps in displaying the next three
+        self.current_indexes = []  # This stores the current indexes in the post list for the 3 posts that are showing 
+        self.post_number = 0   # This assigns a unique post number or id each time a new post is made 
 
     def increment_post(self):
-        self.post_number = self.post_number+1
+        self.post_number = self.post_number+1  # auto assignment for the post ids of the posts 
         return self.post_number
 
     def append_post(self, Post):
-        self.list_of_posts.insert(0, Post)
+        self.list_of_posts.insert(0, Post)  # append post at start (most recent)
 
-    def return_next_three(self, category):
+    def return_next_three(self, category):  # This is basically what happens when you click the next three buttons
 
         return_intention = []
         self.current_indexes = []
 
         def check_similar(a, b):
-            for i in a:
+            for i in a:  # This checks two lists of hobbies to see if they have one similar event if even one user hobby collides with the post category then the post is to be shown
                 for j in b:
                     if i == j:
                         return True
@@ -43,13 +43,13 @@ class Post_encapsulator():
             if check_similar(self.list_of_posts[i].categories, category):
 
                 return_intention.append(self.list_of_posts[i])
-                self.current_indexes.append(i)
+                self.current_indexes.append(i)   # the return list returns the text of the next three and the current index of next three is appended in current indexes so each like buttonm increases likes of its corresponding posts 
             self.i = self.i+1
-            if len(return_intention) == 3:
+            if len(return_intention) == 3:   # if three posts are reached then next 3 is done
                 break
         return return_intention
 
-    def return_top_three(self, category):
+    def return_top_three(self, category): # similar function to the next three but displays the first three when a new post is appended
         def check_similar(a, b):
             for i in a:
                 for j in b:
@@ -256,8 +256,8 @@ class SampleApp(Tk):
 
 class loginpage(Frame):  # login page
 
-    def top_trending(self):
-        window1 = Toplevel()
+    def top_trending(self):  # Code when opening the new window when the top trensing button is clicked 
+        window1 = Toplevel()   # tkinter object to show new window on top of the other
         window1.geometry("1280x720")
 
         # login_frame = Frame(window1, borderwidth=2,
@@ -310,7 +310,7 @@ class loginpage(Frame):  # login page
                              relief='sunken', bg="white", bd='2', width=1280, height=720)
         BG_GRAY = "#ABB2B9"
         BG_COLOR = "#17202A"
-        TEXT_COLOR = "#EAECEE"
+        TEXT_COLOR = "#EAECEE"       # ALL these lines are tkinter specifications for design 
         FONT = "Helvetica 14"
         FONT_BOLD = "Helvetica 13 bold"
 
@@ -328,12 +328,12 @@ class loginpage(Frame):  # login page
         txte.config(state=NORMAL)
         txte.insert(END, self.currentData.getTopTrending())
         login_frame1.place(x=0, y=0, height=720, width=1280)
+        # These next two buttons call the relevant functions to toggle between the next most liked or previous less liked posts in the trending page( see binded functions)
         nextPost = Button(login_frame1, text="Next", font=15, bg="purple", fg="white", command=lambda: self.nextTrending(
             txte), width='10', height='5').place(x=200, y=270)  # 700by580
         prevPost = Button(login_frame1, text="Previous", font=15, bg="purple", fg="white",
                           command=lambda: self.prevTrending(txte), width='10', height='5').place(x=400, y=270)
-        # deletePost = Button(login_frame, text="Delete", font=FONT_BOLD, bg=BG_GRAY, command=lambda: self.delete(txte)
-        #                     ).place(x=0, y=100)
+       
 
         window1.mainloop()
 
@@ -345,12 +345,12 @@ class loginpage(Frame):  # login page
     #     txt.delete('1.0', END)
 
     def nextTrending(self, text):
-        text.delete('1.0', END)
-        text.insert(END, self.currentData.nextTrending())
+        text.delete('1.0', END)       #deletes item in the textbox
+        text.insert(END, self.currentData.nextTrending()) # calls the pairing heap functionality for the next most liked post
 
     def prevTrending(self, text):
         text.delete("1.0", END)
-        text.insert(END, self.currentData.prevTrending())
+        text.insert(END, self.currentData.prevTrending())   # calls the pairing heap functionality for the next most liked post
 
     def __init__(self, root):
         Frame.__init__(self, root)
@@ -358,7 +358,7 @@ class loginpage(Frame):  # login page
         self.root = root
         self.authentication = Authentication()
         self.authentication.click("oqba", "abdul", ["biking", "farming"])
-        f1 = open('userfile.txt', 'r')
+        f1 = open('userfile.txt', 'r')    # This code basically just writes the usernames and password in a file to be retrieved next time the file opens so that username stay can be accessed 
         for line in f1:
 
             lineElem = line.strip('\n').split(" ")
@@ -366,8 +366,10 @@ class loginpage(Frame):  # login page
         self.root.title("Top Trending Blogs - Pairing Heap")
         self.root.geometry('1280x720')
         self.root.resizable(False, False)
-        self.post_list = Post_encapsulator()
-        self.currentData = Data()
+        self.post_list = Post_encapsulator()   # post encapsulator object to keep all the posts 
+        self.currentData = Data()    # data type object that maintains the pairing heap
+        
+        # some initial default posts for testing and other such purposes 
         self.post_list.append_post(
             Post("faraz ", ["biking"], 4444, 8, "Your patience means everything "))
         self.post_list.append_post(
@@ -388,7 +390,7 @@ class loginpage(Frame):  # login page
             Post("faraz ", ["podcasting"], 4444, 3, "test podcast 1"))
         self.post_list.append_post(
             Post("faraz ", ["podcasting"], 4444, 8, "test podcast 3"))
-        
+        # This 
         for i in self.post_list.list_of_posts:
             self.currentData.constructHeap(i)
 
@@ -417,15 +419,15 @@ class loginpage(Frame):  # login page
         signup_button.place(x=837, y=507)
 
         def _login():
-            user = self.E1.get()
+            user = self.E1.get()  # This gets the entry type object entries 
             password = self.E2.get()
             if self.authentication.check(user, password)[0] == "Password is correct..... Login Successful":
-
+                # This is for the login functionality and user authentication
                 # print(self.authentication.check(user, password)[1])
                 self.current_user = self.authentication.check(user, password)[
-                    1]
+                    1]    
                 login_frame.destroy()
-                self.post_list.i = 0
+                self.post_list.i = 0 # since new frame was made post iterator is set to zero 
 
                 self.post_main_frame = Frame(
                     self.root, borderwidth=2, relief='sunken', bg="white", bd='1')
@@ -466,20 +468,20 @@ class loginpage(Frame):  # login page
                 FONT_BOLD = "Helvetica 13 bold"
 
                 def send(username, category):
-                    send = maintxt.get(1.0, "end-1c")
+                    send = maintxt.get(1.0, "end-1c") # This gets textbox entries so that posts can be made when the send button is pressed
                     HOBBY1 = [e2.get().lower()]
                     currentPost = Post(username, HOBBY1, 0,
-                                       self.post_list.increment_post(), send)
-                    self.post_list.append_post(currentPost)
-                    a = self.post_list.return_top_three(category)
+                                       self.post_list.increment_post(), send)  # actually appending the new post after getting the textbox entries 
+                    self.post_list.append_post(currentPost) 
+                    a = self.post_list.return_top_three(category) # returning nrew three posts after the current insertion
                     txt.delete('1.0', END)
                     tx1.delete('1.0', END)
                     tx2.delete('1.0', END)
-                    txt.insert(END, a[0].text)
+                    txt.insert(END, a[0].text)   # showing the new three elements in the textboxes after the updation
                     tx1.insert(END, a[1].text)
                     tx2.insert(END, a[2].text)
                     print("Inserting in heap")
-                    self.currentData.constructHeap(currentPost)
+                    self.currentData.constructHeap(currentPost)  # adding the post in the heap with the 0 likes initially for the maintainance 
                     self.currentData.printPairingHeap()
 
                 # lable1 = Label(self.post_frame , bg=BG_COLOR, fg=TEXT_COLOR, text="Welcome", font=FONT_BOLD, pady=10, width=20, height=1).grid(row=0)
@@ -512,22 +514,24 @@ class loginpage(Frame):  # login page
                     print(text)
 
                 def extract_next(category):
-
-                    function = self.post_list.return_next_three(category)
+                    # functionality  for the next button 
+                    function = self.post_list.return_next_three(category) # brings the next three posts in line 
                     txt.delete('1.0', END)
                     tx1.delete('1.0', END)
                     tx2.delete('1.0', END)
 
                     if (len(function) == 3):
-
+                          # if three more posts exist then show those three posts 
                         txt.insert(END, function[0].text)
                         tx1.insert(END, function[1].text)
                         tx2.insert(END, function[2].text)
                     elif (len(function) == 2):
+                        # if only two more exist then just show the next two
                         txt.insert(END, function[0].text)
                         tx1.insert(END, function[1].text)
 
                     elif len(function) == 1:
+                        # if there is only one more post then justupdate that and leave the other two empty
                         txt.insert(END, function[0].text)
                     else:
                         next_3.destroy()
@@ -536,7 +540,7 @@ class loginpage(Frame):  # login page
 
                     if len(self.post_list.current_indexes) >= 1:
                         self.post_list.list_of_posts[self.post_list.current_indexes[0]].increase_likes(
-                            1)
+                            1)  # Increwase the like attribute of the post index that is in textbox 0 i,.e first post
                         # Formula -> Priority
                         # y = a(1-b)^x
                         # https://stackoverflow.com/questions/32211596/subtract-two-datetime-objects-python
@@ -544,14 +548,16 @@ class loginpage(Frame):  # login page
                         currentPost = self.post_list.list_of_posts[self.post_list.current_indexes[0]]
                         print(
                             f'Text of current post = {currentPost.getText()}')
+                        
+                        # like has increased so call the decrease key function in the pairing heap
                         self.currentData.decreasePriority(
                             currentPost, currentPost.currentPriority)
                         self.currentData.printPairingHeap()
-
+                    
                 def increase_like2():
                     
                     
-                    
+                    #same sunctionality as the like 1 but this time for teh second post
                     
                     if len(self.post_list.current_indexes) >= 2:
                         if  self.current_user.username not in self.post_list.list_of_posts[self.post_list.current_indexes[1]].liked_by:
@@ -568,6 +574,7 @@ class loginpage(Frame):  # login page
                             # print('Test')
                         
                 def increase_like3():
+                    # same functionality as that for like 1 but this time for the third post that is showing 
                     if len(self.post_list.current_indexes) >= 3:
                         self.post_list.list_of_posts[self.post_list.current_indexes[2]].increase_likes(
                             1)
@@ -580,6 +587,9 @@ class loginpage(Frame):  # login page
                                command=lambda: send(self.current_user.username, self.current_user.hobbies)).place(x=465, y=135)
 
                 print(self.current_user.hobbies)
+                
+                
+                #These are the buttons showing in the comment pages 
                 next_3 = Button(self.post_main_frame, text="Next 3", font=FONT_BOLD, bg="#13A4FC", fg="white", command=lambda: extract_next(self.current_user.hobbies)
                                 ).place(x=700, y=580)
                 next_4 = Button(self.post_main_frame, text="Like", font=FONT_BOLD, bg="#13A4FC", fg="white", command=lambda: increase_like1()
@@ -593,7 +603,7 @@ class loginpage(Frame):  # login page
                                 ).place(x=785, y=580)
                 logout = Button(self.post_main_frame, text="Logout", font=FONT_BOLD, bg="#13A4FC", fg="white", command=lambda: goback()
                                 ).place(x=10, y=10)
-
+                 # this is to show the first three comments
                 less = self.post_list.return_next_three(
                     self.current_user.hobbies)
                 print(self.current_user.hobbies)
@@ -669,6 +679,8 @@ class loginpage(Frame):  # login page
             register_button.place(x=850, y=584)
 
         signup_button.bind('<Button-1>', login_to_registeration)
+        
+        # This is to save the user names and passwords for the users so they are saved next time the application opens 
         def addToFile(user, password, hobbies):
             f = open('userfile.txt', "a")
             f.write(user + " " + password + " " + str(hobbies) + "\n")
@@ -677,6 +689,7 @@ class loginpage(Frame):  # login page
             password = self.E4.get()
             # hobbies = self.E5.get()
             hobbies = self.interest.get()
+            # This pices of code just obtains the username and hobbies that the user wants to register with and adds it into out backend 
             self.authentication.click(user, password, [hobbies.lower()])
             addToFile(user,password,hobbies)
 
