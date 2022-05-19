@@ -13,7 +13,7 @@ Social Media forms a huge part of our entertainment and daily communication. Fac
 On running the tkinter application, our social media app opens where you can either login from your ID or register from a new ID using the register ID, the app itself is interest based so that apart from your username and password, you have to choose from a list of interests, the rationale being that a user will be able to see only posts of his own interest once he logins.
 
 <p align="center">
-  <img src="trending.jpg" +/>
+  <img src="Login page.png-" +/>
 </p>
 
 
