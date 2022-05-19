@@ -11,7 +11,7 @@ from Post import Post
 import tkinter as tk
 from tkinter import ttk
 
-# from PIL import ImageTk
+
 
 
 class Post_encapsulator():
