@@ -388,6 +388,9 @@ class loginpage(Frame):  # login page
             Post("faraz ", ["podcasting"], 4444, 3, "test podcast 1"))
         self.post_list.append_post(
             Post("faraz ", ["podcasting"], 4444, 8, "test podcast 3"))
+        
+        for i in self.post_list.list_of_posts:
+            self.currentData.constructHeap(i)
 
         def Message(Text):
             messagebox.showinfo("Message", Text)
