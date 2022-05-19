@@ -198,7 +198,6 @@ class LinearDict():
         self.size = 2*2
         self.filled = 0
         self.filled_with_marker = 0
-# dictionary= LinearDict()
 
 
 class User():
@@ -260,61 +259,16 @@ class loginpage(Frame):  # login page
         window1 = Toplevel()   # tkinter object to show new window on top of the other
         window1.geometry("1280x720")
 
-        # login_frame = Frame(window1, borderwidth=2,
-        #                     relief='sunken', bg="white", bd='2')
-        # BG_GRAY = "#ABB2B9"
-        # BG_COLOR = "#17202A"
-        # TEXT_COLOR = "#EAECEE"
-        # FONT = "Helvetica 14"
-        # FONT_BOLD = "Helvetica 13 bold"
-        # txt = Text(login_frame, bg='#8A2BE2',
-        #            fg=TEXT_COLOR, font=FONT, width=100, height=500)
-        # txt.place(x=640, y=360)
-        # txt.config(state=NORMAL)
-        # txt.insert(END, self.currentData.getTopTrending())
-        # login_frame.place(x=0, y=0, height=720, width=1280)
-        # nextPost = Button(login_frame, text="Next", font=FONT_BOLD, bg="#13A4FC", fg="white", command=lambda: self.nextTrending(txt)
-        #                   ).place(x=50, y=50)  # 700by580
-        # prevPost = Button(login_frame, text="Previous", font=FONT_BOLD, bg=BG_GRAY, command=lambda: self.prevTrending(txt)
-        #                   ).place(x=0, y=500)
-        # # deletePost = Button(login_frame, text="Delete", font=FONT_BOLD, bg=BG_GRAY, command=lambda: self.delete(txt)
-        # #                     ).place(x=0, y=100)
-
-        # login_frame1 = Frame(window1, borderwidth=2,
-        #                      relief='sunken', bg="white", bd='2', width=1280, height=720)
-        # BG_GRAY = "#ABB2B9"
-        # BG_COLOR = "#17202A"
-        # TEXT_COLOR = "#EAECEE"
-        # FONT = "Helvetica 14"
-        # FONT_BOLD = "Helvetica 13 bold"
-
-        # canvas10 = Canvas(login_frame1, width=1280, height=720)
-        # self.b10 = PhotoImage(file="post.png")
-        # canvas10.create_image(0, 0, image=self.b10)
-        # Label(login_frame1, image=self.b10, width='1280', height='720').pack()
-
-        # txte = Text(login_frame1, bg='#D6C5F1',
-        #             fg="white", font=15, width=30, height=10)
-        # txte.place(x=710, y=200)
-        # txte.config(state=NORMAL)
-        # txte.insert(END, self.currentData.getTopTrending())
-        # login_frame1.place(x=0, y=0, height=720, width=1280)
-        # nextPost = Button(login_frame1, text="Next", font=15, bg="#13A4FC", fg="white", command=lambda: self.nextTrending(
-        #     txte), width='10', height='5').place(x=200, y=270)  # 700by580
-        # prevPost = Button(login_frame1, text="Previous", font=15, bg="#13A4FC", fg="white",
-        #                   command=lambda: self.prevTrending(txte), width='10', height='5').place(x=400, y=270)
-        # deletePost = Button(login_frame, text="Delete", font=FONT_BOLD, bg=BG_GRAY, command=lambda: self.delete(txte)
-        #                     ).place(x=0, y=100)
-
+       
         login_frame1 = Frame(window1, borderwidth=2,
-                             relief='sunken', bg="white", bd='2', width=1280, height=720)
+                             relief='sunken', bg="white", bd='2', width=1280, height=720) #this is just for teending frame
         BG_GRAY = "#ABB2B9"
         BG_COLOR = "#17202A"
         TEXT_COLOR = "#EAECEE"       # ALL these lines are tkinter specifications for design 
         FONT = "Helvetica 14"
         FONT_BOLD = "Helvetica 13 bold"
 
-        canvas10 = Canvas(login_frame1, width=1280, height=720)
+        canvas10 = Canvas(login_frame1, width=1280, height=720)# for the image in  the trending page
         self.b10 = PhotoImage(file="post.png")
         canvas10.create_image(0, 0, image=self.b10)
         Label(login_frame1, image=self.b10, width='1280', height='720').pack()
@@ -337,12 +291,7 @@ class loginpage(Frame):  # login page
 
         window1.mainloop()
 
-        # window1.mainloop()
-
-        # window1.mainloop()
-
-    # def delete(self, txt):
-    #     txt.delete('1.0', END)
+        
 
     def nextTrending(self, text):
         text.delete('1.0', END)       #deletes item in the textbox
@@ -398,15 +347,15 @@ class loginpage(Frame):  # login page
             messagebox.showinfo("Message", Text)
 
         login_frame = Frame(self.root, borderwidth=2,
-                            relief='sunken', bg="white", bd='2')
+                            relief='sunken', bg="white", bd='2') # login frame
         login_frame.place(x=0, y=0, height=720, width=1280)
 
-        canvas1 = Canvas(login_frame, width=1280, height=720)
+        canvas1 = Canvas(login_frame, width=1280, height=720)# image for login frame
         self.b = PhotoImage(file="login3.png")
         canvas1.create_image(0, 0, image=self.b)
         Label(login_frame, image=self.b, width='1280', height='720').pack()
 
-        self.E1 = Entry(login_frame, bd=0, bg="white")
+        self.E1 = Entry(login_frame, bd=0, bg="white") #entries for username and password
         self.E1.place(x=780, y=280, width=245, height=30)
 
         # --> create an Entry for user to write his name
@@ -433,37 +382,16 @@ class loginpage(Frame):  # login page
                     self.root, borderwidth=2, relief='sunken', bg="white", bd='1')
                 self.post_main_frame.place(x=0, y=0, height=720, width=1280)
 
-                canvas5 = Canvas(self.post_main_frame, width=1280, height=720)
+                canvas5 = Canvas(self.post_main_frame, width=1280, height=720) #post image and frame
                 self.b5 = PhotoImage(file="post.png")
                 canvas5.create_image(0, 0, image=self.b5)
                 Label(self.post_main_frame, image=self.b5,
                       width='1280', height='720').pack()
-                # post_list = Post_encapsulator()
-                # self.currentData = Data()
+               
                 BG_GRAY = "#ABB2B9"
                 BG_COLOR = "#17202A"
                 TEXT_COLOR = "#EAECEE"
-                # self.post_list.append_post(
-                #     Post("faraz ", ["biking"], 4444, 8, "Your patience means everything "))
-                # self.post_list.append_post(
-                #     Post("abdul ", ["biking"], 248, 1, "The summer Heat is riveting "))
-                # self.post_list.append_post(
-                #     Post("oqba ", ["biking"], 267, 3, "hot to worry though "))
-                # self.post_list.append_post(
-                #     Post("faraz ", ["biking"], 4444, 8, "Your patience means everything "))
-                # self.post_list.append_post(
-                #     Post("abdul ", ["biking"], 248, 1, "YEs the shift does indeed happen "))
-                # self.post_list.append_post(
-                #     Post("oqba ", ["biking"], 267, 3, "not to worry though "))
-                # self.post_list.append_post(
-                #     Post("faraz ", ["biking"], 4444, 8, "Your patience means everything "))
-                # self.post_list.append_post(
-                #     Post("faraz ", ["podcasting"], 4444, 8, "test podcast "))
-                # self.post_list.append_post(
-                #     Post("faraz ", ["podcasting"], 4444, 3, "test podcast 1"))
-                # self.post_list.append_post(
-                #     Post("faraz ", ["podcasting"], 4444, 8, "test podcast 3"))
-
+               
                 FONT = "Helvetica 14"
                 FONT_BOLD = "Helvetica 13 bold"
 
@@ -484,10 +412,8 @@ class loginpage(Frame):  # login page
                     self.currentData.constructHeap(currentPost)  # adding the post in the heap with the 0 likes initially for the maintainance 
                     self.currentData.printPairingHeap()
 
-                # lable1 = Label(self.post_frame , bg=BG_COLOR, fg=TEXT_COLOR, text="Welcome", font=FONT_BOLD, pady=10, width=20, height=1).grid(row=0)
-
                 txt = Text(self.post_main_frame, bg='#D6C5F1',
-                           fg="black", font=FONT, width=30, height=6)
+                           fg="black", font=FONT, width=30, height=6) #texts box to display posts input by the user
                 txt.place(x=640, y=80)
                 tx1 = Text(self.post_main_frame, bg='#D6C5F1',
                            fg="black", font=FONT, width=30, height=6)
@@ -504,11 +430,11 @@ class loginpage(Frame):  # login page
                 label_main1 = Label(self.post_main_frame, text="I N T E R E S T S", font=(
                     "comic Sans", 25, "bold"), bg="#8955E3", fg="white").place(x=205, y=420)
                 e2 = Entry(self.post_main_frame, bg="#D6C5F1",
-                           fg="white", font=FONT, width=30)
+                           fg="white", font=FONT, width=30) #entries for the interest and the text box above is for entering post
                 e2.place(x=200, y=490)
-                e3 = Entry(self.post_main_frame, bg="#D6C5F1",
-                           fg="white", font=FONT, width=30)
-                e3.place(x=200, y=550)
+#                 e3 = Entry(self.post_main_frame, bg="#D6C5F1",
+#                            fg="white", font=FONT, width=30)
+#                 e3.place(x=200, y=550)
 
                 def checking(text):
                     print(text)
@@ -591,12 +517,12 @@ class loginpage(Frame):  # login page
                 
                 #These are the buttons showing in the comment pages 
                 next_3 = Button(self.post_main_frame, text="Next 3", font=FONT_BOLD, bg="#13A4FC", fg="white", command=lambda: extract_next(self.current_user.hobbies)
-                                ).place(x=700, y=580)
+                                ).place(x=700, y=580) #button for next 3 posts
                 next_4 = Button(self.post_main_frame, text="Like", font=FONT_BOLD, bg="#13A4FC", fg="white", command=lambda: increase_like1()
                                 ).place(x=640, y=218)
 
                 next_6 = Button(self.post_main_frame, text="Like", font=FONT_BOLD, bg="#13A4FC", fg="white", command=lambda: increase_like2()
-                                ).place(x=640, y=400)
+                                ).place(x=640, y=400) #button for like
                 next_7 = Button(self.post_main_frame, text="Like", font=FONT_BOLD, bg="#13A4FC", fg="white", command=lambda: increase_like3()
                                 ).place(x=640, y=580)
                 next_8 = Button(self.post_main_frame, text="View Trending Post", font=FONT_BOLD, bg="#13A4FC", fg="white", command=lambda: self.top_trending()
@@ -631,11 +557,9 @@ class loginpage(Frame):  # login page
         self.b3 = PhotoImage(file="gobackshape.png")
         # self.b4 = PhotoImage(file = "registershape.png")
 
-        def login_to_registeration(root):
+        def login_to_registeration(root): #you will see alot of destroy function we use this to change the wndow deame and for displaying other opage of our application
             login_frame.destroy()
-            # self.curr_register_frame=Frame(self.root, borderwidth=2, relief='sunken', bg="#405898", bd='10')
-            # self.curr_register_frame.place(x=0, y=0,height = 720, width =1380)
-
+            
             self.information_frame = Frame(
                 self.root, borderwidth=0.5, relief='sunken', bg="white", bd='0')
             self.information_frame.place(x=0, y=0, height=720, width=1280)
@@ -650,18 +574,12 @@ class loginpage(Frame):  # login page
                                  activebackground='purple', bg='purple', fg='white', font=('Bebas Neue', 15, 'bold'), bd=0, height='30', width='120')
             back_button.place(x=854, y=530)
 
-            # label3 = Label(information_frame,text="Username", font=("Goudy old style", 15, "bold"), fg='gray', bg="white").place(x=50, y=120)
-            # --> create an Entry for user to write his name
-            self.E3 = Entry(self.information_frame, bd=0, bg="white")
+            self.E3 = Entry(self.information_frame, bd=0, bg="white") #username and password for registration or signup
             self.E3.place(x=793, y=243, width=245, height=30)
 
-            # label4 = Label(information_frame,text="Password", font=("Goudy old style", 15, "bold"), fg='gray', bg="white").place(x=50, y=170)
-            # --> create an Entry for user to write his name
             self.E4 = Entry(self.information_frame, bd=0, bg="white")
             self.E4.place(x=793, y=340, width=245, height=30)
 
-            # label5 = Label(information_frame,text="Hobbies", font=("Goudy old style", 15, "bold"), fg='gray', bg="white").place(x=50, y=235)
-            # --> create an Entry for user to write his name
             self.E5 = Entry(self.information_frame, bd=0, bg="white")
             self.E5.place(x=793, y=449, width=245, height=30)
             selected_month = tk.StringVar()
@@ -699,21 +617,14 @@ class loginpage(Frame):  # login page
                                 relief='sunken', bg="white", bd='2')
             login_frame.place(x=0, y=0, height=720, width=1280)
 
-            # label = Label(login_frame,text="Login Here", font=("Bebas Neue", 35, "bold"), fg='#405898', bg="white").place(x=125, y=0)
-
-            # label1 = Label(login_frame,text="Username", font=("Goudy old style", 15, "bold"), fg="gray", bg="white").place(x=50, y=120)
-
             canvas1 = Canvas(login_frame, width=1280, height=720)
             self.b = PhotoImage(file="login3.png")
             canvas1.create_image(0, 0, image=self.b)
             Label(login_frame, image=self.b, width='1280', height='720').pack()
 
-            # --> create an Entry for user to write his name
             self.E1 = Entry(login_frame, bd=0, bg="white")
             self.E1.place(x=780, y=280, width=245, height=30)
 
-            # label2 = Label(login_frame,text="Password", font=("Goudy old style", 15, "bold"), fg="gray", bg="white").place(x=50, y=170)
-            # --> create an Entry for user to write his name
             self.E2 = Entry(login_frame, bd=0, bg="white", show="*")
             self.E2.place(x=780, y=377, width=245, height=30)
 
@@ -721,7 +632,7 @@ class loginpage(Frame):  # login page
             signup_button = Button(login_frame, text='SignUp', command='c', image=self.b1, relief='sunken', padx=5, pady=5,
                                    activebackground='white', activeforeground='red', bg='white', fg='black', font=('Bebas Neue', 15), bd=0, height='30', width='120')
             signup_button.place(x=837, y=507)
-            signup_button.bind('<Button-1>', login_to_registeration)
+            signup_button.bind('<Button-1>', login_to_registeration) #signup button
 
             self.b2 = PhotoImage(file="loginshape.png")
             login_button = Button(login_frame, text='LogIn', command=_login, image=self.b2, relief='sunken', padx=5, pady=5,  activebackground='light blue',
@@ -734,21 +645,17 @@ class loginpage(Frame):  # login page
                                 relief='sunken', bg="white", bd='2')
             login_frame.place(x=0, y=0, height=720, width=1280)
 
-            # label = Label(login_frame,text="Login Here", font=("Bebas Neue", 35, "bold"), fg='#405898', bg="white").place(x=125, y=0)
-
-            # label1 = Label(login_frame,text="Username", font=("Goudy old style", 15, "bold"), fg="gray", bg="white").place(x=50, y=120)
-
+           
             canvas1 = Canvas(login_frame, width=1280, height=720)
             self.b = PhotoImage(file="login3.png")
             canvas1.create_image(0, 0, image=self.b)
             Label(login_frame, image=self.b, width='1280', height='720').pack()
 
-            # --> create an Entry for user to write his name
+           
             self.E1 = Entry(login_frame, bd=0, bg="white")
             self.E1.place(x=780, y=280, width=245, height=30)
 
-            # label2 = Label(login_frame,text="Password", font=("Goudy old style", 15, "bold"), fg="gray", bg="white").place(x=50, y=170)
-            # --> create an Entry for user to write his name
+            
             self.E2 = Entry(login_frame, bd=0, bg="white", show="*")
             self.E2.place(x=780, y=377, width=245, height=30)
 
