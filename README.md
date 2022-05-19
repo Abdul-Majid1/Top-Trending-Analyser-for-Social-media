@@ -22,11 +22,17 @@ On running the tkinter application, our social media app opens where you can eit
 
 
 
-Upon login, the user will be able to see all the posts that have been made in his category.These posts will be in order of time posted with most recent on top. The user can post in any category including his own and if he posts in his own category then he can see in real time the post appear on top, if not the post is relayed to other users who match the category of interest. Lets see a visual example of this , so the user corrently loginned has an interest in biking so he can see all posts related to his category and  as you will seeif he posts in the biking category the post will appeqar on top:
+Upon login, the user will be able to see all the posts that have been made in his category.These posts will be in order of time posted with most recent on top. The user can post in any category including his own and if he posts in his own category then he can see in real time the post appear on top, if not the post is relayed to other users who match the category of interest. Lets see a visual example of this , so the user corrently loginned has an interest in biking so he can see all posts related to his category and  as you will see if he posts in the biking category the post will appear on top ,pushing the other posts down , next 3 always lets you see the next page in order.
 
 
 <p align="center">
   <img src="posting.png" +/>
+</p>
+
+
+
+<p align="center">
+  <img src="posted.png" +/>
 </p>
 
 
