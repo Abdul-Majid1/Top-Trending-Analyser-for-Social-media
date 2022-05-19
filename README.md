@@ -4,5 +4,5 @@ This repository is a final project submission for the DS2 spring 2022 offering a
 
 
 ## Introduction
-![trending](https://user-images.githubusercontent.com/77571253/169242911-5dc83149-bd1c-4ba9-9203-b1e0589dbd93.jpg)
+![toptrending](https://user-images.githubusercontent.com/77571253/169244806-b276d861-e556-4fee-8514-183f831f1c42.jpg)
 
