@@ -10,6 +10,10 @@ Social Media forms a huge part of our entertainment and daily communication. Fac
 ![toptrending](https://user-images.githubusercontent.com/77571253/169244806-b276d861-e556-4fee-8514-183f831f1c42.jpg)
 
 ## Flow and App Structure 
+
+Note our main code is in the login.py file , which is our main file
+
+
 On running the tkinter application, our social media app opens where you can either login from your ID or register from a new ID using the register ID, the app itself is interest based so that apart from your username and password, you have to choose from a list of interests, the rationale being that a user will be able to see only posts of his own interest once he logins.
 
 <p align="center">
