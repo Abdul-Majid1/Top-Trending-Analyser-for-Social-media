@@ -1,40 +1,77 @@
 import datetime
 
 
-# class Post:
-#     def __init__(self, textEntry: str, DateTime: datetime) -> None:
-#         self.Text = textEntry
-#         self.numLikes = 0
-#         self.postedOn = DateTime
-
-#     def postLiked(self) -> None:
-#         self.numLikes += 1
-
-#     def getText(self):
-#         return self.Text
-
 class Post():
-    def __init__(self, user, categories, likes, post_id, texting):  #each post posted has these attributes
+    '''
+    A Post interface.
+    '''
+
+    def __init__(self, user, categories, likes, post_id, texting) -> None:
+        """ Creates a Post type object. Each Post has a user, number of likes, a unique
+        post id, Category of the post, the main text body of the post and a list 
+        which shows who have liked the post. Current priority is always the negative equivalent
+        of current number of likes.
+
+        Parameters:
+        - self: mandatory reference to this object.
+
+        Returns:
+        none
+        """
         self.date_time = datetime.datetime.now()
-        self.post_id = post_id   # identifier of the post
-        self.likes = 0   # no of likes that the post has 
-        self.user = user    # user type object that stores information about who makes the posts 
-        self.categories = categories  # list of max two items of the categories the post covers (to show to only those users
-        self.text = texting  # the actual text of the post 
+        self.post_id = post_id
+        self.likes = 0
+        self.user = user
+        self.categories = categories
+        self.text = texting
         self.liked_by = []
-        self.currentPriority = 0     # a priority keeper , since our heap is a min heap , this priority sdecreases on each like so that post reaches top when likes are max 
+        self.currentPriority = 0
 
-    def increase_likes(self, num):
-        self.likes = self.likes+1  # setter function for likes
-        self.currentPriority -= 1   # note that the likes increase the priority decrease as implementation is as a min heapp
+    def increase_likes(self, num) -> None:
+        """ Increases the like of the post by one.
 
-    def getLikes(self):
+        Parameters:
+        - self: mandatory reference to this object.
+
+        Returns:
+        none
+        """
+        self.likes = self.likes+1
+        self.currentPriority -= 1
+
+    def getLikes(self) -> int:
+        """ A getter function to return the current number of likes of the post.
+
+        Parameters:
+        - self: mandatory reference to this object.
+
+        Returns:
+        Current Number of likes
+        """
         return self.likes
 
-    def getText(self):
+    def getText(self) -> str:
+        """ A getter function to return the main text of the post.
+
+        Parameters:
+        - self: mandatory reference to this object.
+
+        Returns:
+        Text of the post
+        """
         return self.text
 
-    def __eq__(self, other):   # magic method to compare post_ids (mainly for some internal functionality of pairing heap 
-        if isinstance(other, Post):  
+    def __eq__(self, other) -> bool:
+        """ An overridden dunder method that checks if two posts are similar. Both posts
+        are compared with their post ids.
+
+        Parameters:
+        - self: mandatory reference to this object.
+        - other: Post with which the equality is compared.
+
+        Returns:
+        A Boolean value
+        """
+        if isinstance(other, Post):
             return self.post_id == other.post_id
         return False
