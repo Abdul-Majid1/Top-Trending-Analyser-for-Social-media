@@ -9,3 +9,6 @@ Social Media forms a huge part of our entertainment and daily communication. Fac
 
 ![toptrending](https://user-images.githubusercontent.com/77571253/169244806-b276d861-e556-4fee-8514-183f831f1c42.jpg)
 
+## Flow and App Structure 
+
+
