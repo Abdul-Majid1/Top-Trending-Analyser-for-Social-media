@@ -1,5 +1,12 @@
 from Post import Post
 
+'''
+The basic Pairing Heap implementation is taken from
+https://www.geeksforgeeks.org/pairing-heap/
+Contributed by Amratya Ghosh.
+We used this implementation and modified it to match our requirments 
+'''
+
 
 class HeapNode:
     '''
