@@ -2,23 +2,52 @@ from Post import Post
 
 
 class HeapNode:
+    '''
+    A Heap Node Interface.
+    '''
 
-    # creates a new node
-    def __init__(self, post_=None, key_=None, leftChild_=None, nextSibling_=None):
+    def __init__(self, post_=None, key_=None, leftChild_=None, nextSibling_=None) -> None:
+        """ Creates a Heap Node with properties Post of Post Type object
+        key which is the priority of integer, leftchild and nextSibling pointers
+
+        Parameters:
+        - self: mandatory reference to this object.
+
+        Returns:
+        none
+        """
         self.post = post_
         self.key = post_.currentPriority
         self.leftChild = leftChild_
         self.nextSibling = nextSibling_
 
-    # Adds a child and sibling to the node
-    def addChild(self, node):
+    def addChild(self, node: 'HeapNode') -> None:
+        """ Creates a Backend with an attribute of type Pairing heap
+        and a Trending List that will store the top trending posts
+
+        Parameters:
+        - self: mandatory reference to this object.
+        - node: HeapNode that is to be added
+
+        Returns:
+        none
+        """
         if(self.leftChild == None):
             self.leftChild = node
         else:
             node.nextSibling = self.leftChild
             self.leftChild = node
 
-    def __iter__(self):
+    def __iter__(self) -> 'HeapNode':
+        """ Makes it possible to iterate over Nodes. Starting from the
+        Root node and traverses level wise
+
+        Parameters:
+        - self: mandatory reference to this object.
+
+        Yields:
+        HeapNode type object
+        """
         stack = []
         currentNode = self
         stack.append(currentNode)
@@ -36,89 +65,131 @@ class HeapNode:
                 currentNode = stack.pop()
 
 
-# Returns true if root of the tree
-# is None otherwise returns false
-
-
-def Empty(node):
+def Empty(node: 'HeapNode') -> bool:
     return (node == None)
 
-# Function to merge two heaps
 
-
-def Merge(A, B):
-
-    # If any of the two-nodes is None
-    # the return the not None node
+def Merge(A: 'HeapNode', B: 'HeapNode') -> 'HeapNode':
     if(A == None):
         return B
     if(B == None):
         return A
-
-    # To maintain the min heap condition compare
-    # the nodes and node with minimum value become
-    # parent of the other node
-    print(A.key)
-    print(B.key)
     if(A.key < B.key):
         A.addChild(B)
         return A
     B.addChild(A)
     return B
 
-# Returns the root value of the heap
 
-
-def Top(node):
+def Top(node: 'HeapNode') -> 'HeapNode':
     return node
 
 
-# Function to insert the new node in the heap
-def Insert(node, post, priority):
+def Insert(node: 'HeapNode', post: Post, priority: int) -> 'HeapNode':
     return Merge(node, HeapNode(post, priority))
 
 
-# This method is used when we want to delete root node
-def TwoPassMerge(node):
+def TwoPassMerge(node: 'HeapNode') -> 'HeapNode':
     if(node == None or node.nextSibling == None):
         return node
     A = node
     B = node.nextSibling
     newNode = node.nextSibling.nextSibling
-
     A.nextSibling = None
     B.nextSibling = None
-
     return Merge(Merge(A, B), TwoPassMerge(newNode))
 
 
-# Function to delete the root node in heap
-def Delete(node):
+def Delete(node: 'HeapNode') -> 'HeapNode':
     return TwoPassMerge(node.leftChild)
 
 
 class PairingHeap:
-    def __init__(self):
+    '''
+    A Pairing Heap Interface
+    '''
+
+    def __init__(self) -> None:
+        """ Creates a Pairing Heap Type Object
+
+        Parameters:
+        - self: mandatory reference to this object.
+
+        Returns:
+        none
+        """
         self.root = None
         self.TraversalNodes = []
         self.stackOfNodes = []
 
-    def Empty(self):
+    def Empty(self) -> bool:
+        """ Checks if Pairing Heap has any nodes inserted or is empty
+
+        Parameters:
+        - self: mandatory reference to this object.
+
+        Returns:
+        Whether The Pairing Heap has any nodes or not
+        """
         return Empty(self.root)
 
-    def Top(self):
+    def Top(self) -> 'HeapNode':
+        """ Returns the root node of Pairing Heap. 
+
+        Parameters:
+        - self: mandatory reference to this object.
+
+        Returns:
+        The Top most HeapNode type object
+        """
         return Top(self.root)
 
-    def Insert(self, post, priority):
+    def Insert(self, post: Post, priority: int) -> None:
+        """ Inserts a post into the Pairing Heap
+
+        Parameters:
+        - self: mandatory reference to this object.
+        - post: Post that is to be inserted.
+        - priority: initial priority of the post.
+
+        Returns:
+        none
+        """
         self.root = Insert(self.root, post, priority)
 
-    def Delete(self):
+    def Delete(self) -> None:
+        """ Deletes the top most node of the pairing heap and then performs the two
+        pass merge operation to restructure the pairing heap
+
+        Parameters:
+        - self: mandatory reference to this object.
+
+        Returns:
+        none
+        """
         self.root = Delete(self.root)
 
-    def Join(self, other):
+    def Join(self, other: 'PairingHeap') -> None:
+        """ Joins the two pairing heaps into one.
+
+        Parameters:
+        - self: mandatory reference to this object.
+        - other: The other Pairing Heap object that is to be merged.
+
+        Returns:
+        none
+        """
         self.root = Merge(self.root, other.root)
 
-    def __iter__(self):
+    def __iter__(self) -> None:
+        """ a dunder function that allows iterating over the pairing heap.
+
+        Parameters:
+        - self: mandatory reference to this object.
+
+        Yields:
+        HeapNode type object. Each node of the pairing heap.
+        """
         stack = []
         currentNode = self.root
         stack.append(currentNode)
@@ -138,7 +209,18 @@ class PairingHeap:
             elif len(stack) != 0:
                 currentNode = stack.pop()
 
-    def find(self, p):
+    def find(self, p: Post) -> "tuple(HeapNode, HeapNode, str)":
+        """ Traverses the pairing heap and returns the Post p with its previous node.
+
+        Parameters:
+        - self: mandatory reference to this object.
+
+        Returns:
+        A Tuple of Previous Node, CurrentNode and an indicator whether the current
+        post is nextSibling or leftChild of prevNode.
+        Returns (0, i, indicator) if post is the root node
+        Returns (-1, -1, -1) if Post doesn't exist
+        """
         for i in self:
             if i.leftChild:
                 if i.leftChild.post == p:
@@ -148,13 +230,27 @@ class PairingHeap:
                 if i.nextSibling.post == p:
                     indicator = 'N'
                     return (i, i.nextSibling, indicator)
-        indicator = 'R'
-        return (0, i, indicator)
+        if i == p:
+            indicator = 'R'
+            return (0, i, indicator)
+        return(-1, -1, -1)
 
-    def decreaseKey(self, post, priority):
+    def decreaseKey(self, post: Post, priority: int) -> 'PairingHeap':
+        """ Takes a Post type object, finds it in the Pairing heap and reduces its priority
+
+        Parameters:
+        - self: mandatory reference to this object.
+        - post: The Post whose priority is to be updated.
+        - priority: The updated priority
+
+        Returns:
+        self
+        """
         prevNode, currentNode, indicator = self.find(post)
-        # if currentNode.key < priority:
-        #     return
+        if currentNode.key < priority:
+            return
+        if prevNode == currentNode == indicator == -1:
+            return
         if prevNode == 0:
             self.root.key = priority
             return
@@ -175,101 +271,4 @@ class PairingHeap:
             newHeap.Insert(i.post, i.key)
 
         self.Join(newHeap)
-        for i in self:
-            print(f'Printing Posts: {i.post.getText()}')
         return self
-
-
-# Driver Code
-if __name__ == '__main__':
-    pass
-
-    #     heap1, heap2 = PairingHeap(), PairingHeap()
-    #     tempPost1 = Post("faraz ", ["biking"], 4444, 8,
-    #                      "YOur patience means everything ")
-    #     tempPost2 = Post("abdul ", ["Biking"], 248, 1,
-    #                      "The summer Heat is riveting ")
-    #     tempPost3 = Post("oqba ", ["Biking"], 267, 3, "hot to worry though ")
-    #     tempPost4 = Post("faraz ", ["biking "], 4444, 8,
-    #                      "YOur patience means everything ")
-    #     tempPost5 = Post("abdul ", ["Biking"], 248, 1,
-    #                      "YEs the shift does indeed happen ")
-    #     tempPost6 = Post("oqba ", ["Biking"], 267, 3, "not to worry though ")
-    #     tempPost7 = Post("faraz ", ["Biking"], 4444, 8,
-    #                      "YOur patience means everything ")
-
-    #     # print(f'Post 1 = {tempPost1.getText()}')
-    #     # print(f'Post 2 = {tempPost2.getText()}')
-    #     # print(f'Post 7 = {tempPost7.getText()}')
-    #     # print(f'Post1 = Post2 = {tempPost2 == tempPost1}')
-    #     # print(f'Post1 = Post7 = {tempPost7 == tempPost1}')
-    #     heap1.Insert(tempPost1, 0)
-    #     heap1.Insert(tempPost2, 0)
-    #     heap1.Insert(tempPost3, 0)
-
-    #     for i in heap1:
-    #         print(i.post.getText())
-
-    #     heap1.decreaseKey(tempPost2, -1)
-    #     for i in heap1:
-    #         print(i.post.getText())
-
-    #     heap1.decreaseKey(tempPost1, -2)
-    #     for i in heap1:
-    #         print(i.post.getText())
-
-    #     # heap2.Insert(tempPost5, 5)
-    #     # heap2.Insert(tempPost2, 2)
-
-    #     # heap2.Insert(tempPost6, 6)
-    #     # heap1.Insert(tempPost1, 1)
-    #     # heap1.Insert(tempPost3, 3)
-    #     # heap1.Insert(tempPost4, 4)
-
-    #     # heap1.Join(heap2)
-
-    #     # print("Initial Heap")
-    #     # for i in heap1:
-    #     #     print(i.key)
-
-    #     # print()
-
-    #     # heap1.decreaseKey(2, 0)
-
-    #     # print("Heap after decrease key")
-    #     # for i in heap1:
-    #     #     print(i.key)
-
-    #     # print()
-
-    #     # print('Deleting top element')
-    #     # print(heap1.Top().key)
-    #     # print(heap1.Top().post.getText())
-    #     # heap1.Delete()
-
-    #     # print('Deleting top element')
-    #     # print(heap1.Top().key)
-    #     # print(heap1.Top().post.getText())
-    #     # heap1.Delete()
-
-    #     # print('Deleting top element')
-    #     # print(heap1.Top().key)
-    #     # print(heap1.Top().post.getText())
-    #     # heap1.Delete()
-
-    #     # print('Deleting top element')
-    #     # print(heap1.Top().key)
-    #     # print(heap1.Top().post.getText())
-    #     # heap1.Delete()
-
-    #     # print('Deleting top element')
-    #     # print(heap1.Top().key)
-    #     # print(heap1.Top().post.getText())
-    #     # heap1.Delete()
-
-    #     # print('Deleting top element')
-    #     # print(heap1.Top().key)
-    #     # print(heap1.Top().post.getText())
-    #     # heap1.Delete()
-
-    # # This code is contributed by Amartya Ghosh and Faraz Ali
