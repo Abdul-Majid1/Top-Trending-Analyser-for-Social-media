@@ -11,43 +11,11 @@ from Post import Post
 import tkinter as tk
 from tkinter import ttk
 from post_encapsulator import Post_encapsulator
+from user import User
+from authentication import Authentication
 
 
 
-
-
-class User():
-    def __init__(self, username, password, hobbies):
-        self.username = username
-        self.password = password
-        self.hobbies = []
-        for i in hobbies:
-            self.hobbies.append(i)
-
-
-class Authentication():
-
-    def __init__(self):
-        self.list_of_record = dict()
-
-    def click(self, username, password, hobbies):
-        for i in range(len(hobbies)):
-            hobbies[i] = hobbies[i].lower()
-        user1 = User(username, password, hobbies)
-        self.list_of_record[user1.username] = user1
-
-    def check(self, username, password):
-        found = self.list_of_record.get(username, False)
-
-        if found:
-            # print(found.password)
-            if password == found.password:
-                return ("Password is correct..... Login Successful", found)
-            else:
-                return ("Incorrect password", found)
-
-        else:
-            return ("No username of this ID was found", found)
 
 
 authentication = Authentication()
